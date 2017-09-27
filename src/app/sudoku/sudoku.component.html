@@ -1,0 +1,9 @@
+<div class="container">
+    <ul class="sudokus">
+        <li *ngFor="let sudoku of sudokus"
+            [class.selected]="sudoku === sudokuSelected"
+            (click)="onSelect(sudoku)">
+            <span>{{sudoku.id}}</span> {{sudoku.name}}
+        </li>
+    </ul>
+</div>

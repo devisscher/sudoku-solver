@@ -1,0 +1,42 @@
+/* Sudoku table styles */
+
+
+table {
+    border-spacing: 0;
+    border: 1px solid #CCCCCC;
+    border-radius: 3px;
+    /* width: 100%; */
+}
+
+table th,
+table td {
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0px 0px;
+    height: 30px;
+    width: 30px;
+    border-right: 1px solid #CCCCCC;
+}
+
+table th:last-child:not(:first-child),
+table td:last-child:not(:first-child) {
+    border-right: 0;
+}
+
+table tr {
+    box-sizing: border-box;
+}
+
+table tr td,
+table tr th {
+    border-bottom: 1px solid #CCCCCC;
+}
+
+table tr:last-child:not(:first-child) td,
+table tr:last-child:not(:first-child) th {
+    border-bottom: 0;
+}
+
+table tbody tr:nth-child(2n - 1) {
+    background-color: #F2F2F2;
+}
