@@ -82,7 +82,6 @@ export class SudokuService {
                 }
             }
             sudoku.forEach((row) => {
-
                 console.log(row.join());
             });
             return await sudoku;
