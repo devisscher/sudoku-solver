@@ -11,6 +11,12 @@ and
 
 ### README To be incomplete.
 
+## Resources
+
+- http://norvig.com/sudoku.html
+- https://www.youtube.com/watch?v=NuodN41aK3g
+- https://www.codefellows.org/blog/sudoku-solver-from-scratch-in-javascript-tdd-style-a-tutorial/
+
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 

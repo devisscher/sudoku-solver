@@ -1,9 +1,24 @@
 <div class="container">
+    <h2>{{title}}</h2>
     <ul class="sudokus">
         <li *ngFor="let sudoku of sudokus"
-            [class.selected]="sudoku === sudokuSelected"
+            [class.selected]="sudoku === selectedSudoku"
+            style="cursor:pointer;"
             (click)="onSelect(sudoku)">
             <span>{{sudoku.id}}</span> {{sudoku.name}}
         </li>
     </ul>
+    <div *ngIf="selectedSudoku">
+        <h2>
+            {{selectedSudoku.name}}
+        </h2>
+        <table class="sudoku-grid">
+            <tr>
+                <td *ngFor="let tile of selectedSudoku.data let i = index; trackBy: trackByFn;">
+                    {{tile}}
+                </td>
+            </tr>
+        </table>
+        <button class="lui-button" (click)="solveSudoku(selectedSudoku)">SOLVE</button>
+    </div>
 </div>
