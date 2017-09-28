@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, HttpModule } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Sudoku } from './sudoku';
 import { Solution } from './solution';
@@ -76,7 +76,7 @@ export class SudokuService {
                         value ++;
                     }
                 }
-                if (!found){
+                if (!found) {
                     sudoku[row][col] = 0;
                     i--;
                 }

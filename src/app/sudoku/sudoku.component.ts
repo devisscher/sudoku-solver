@@ -6,7 +6,8 @@ import { Solution } from './solution';
 @Component({
     selector: 'sudoku-component',
     styleUrls: ['./sudoku.component.css'],
-    templateUrl: './sudoku.component.html'
+    templateUrl: './sudoku.component.html',
+    providers: [SudokuService]
 })
 
 export class SudokuComponent implements OnInit {
@@ -17,7 +18,7 @@ export class SudokuComponent implements OnInit {
     constructor(
         private sudokuService: SudokuService
     ) { }
-    
+
     getSudokus(): void {
         this.sudokuService.getSudokus().then(sudokus => this.sudokus = sudokus);
       };
