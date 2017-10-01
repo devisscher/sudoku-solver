@@ -1,3 +1,3 @@
 export class Solution {
-    data: Array<number>;
-  };
+    data: Array<Array<number>>;
+};
