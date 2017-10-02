@@ -1,20 +1,17 @@
-export class Puzzle {
+export class Puzzle {}
 
-}
-
- /**
+/**
  * Defines the type Sudoku.
  */
 export class Sudoku {
-    /**
+  /**
      * id
      */
-    id: number;
-    /**
+  id: number;
+  /**
      * name of puzzle
      */
-    name: string;
+  name: string;
 
-    data: Array<any>;
-  };
-
+  data: Array<any>;
+}

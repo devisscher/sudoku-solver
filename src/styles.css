@@ -13,38 +13,41 @@ a {
     font-family: system-ui;
 }
 
+
 /* Sudoku Table */
+
 table {
     border: 2px solid #000000;
     border-collapse: collapse;
 }
-
 
 tr td {
     border: 1px solid #000000;
 }
 
 td {
-    width: 30px;
-    height: 30px;
+    width: 11.11%;
+    height: 11.11%;
     text-align: center;
 }
 
+
 /* Add a border to the third and sixth row */
+
 tr:nth-child(3n) td {
     border-bottom: 3px solid #000000;
-    ;
 }
+
 
 /* Add a border to the third and sixth column */
+
 td:nth-child(3n) {
     border-right: 3px solid #000000;
-    ;
 }
-
 
 
 /* Remove border from the last child on each row and columns */
+
 tr:last-child td {
     border-bottom: 1px solid #000000;
 }

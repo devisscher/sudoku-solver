@@ -7,40 +7,18 @@
             {{sudoku.name}}
         </li>
     </ul>
-    <div class="col-md-5">
-        <div *ngIf="selectedSudoku">
-            <h2>
-                {{selectedSudoku.name}}
-            </h2>
-            <div *ngIf="parsed" class="sudoku-grid">
+    <div class="col-md-6 col-md-offset-3">
+        <div *ngIf="selectedSudoku" class="sudoku-grid">
             <table class="sudoku-table">
-                <tr *ngFor="let row of parsed; let r = index;">
+                <tr *ngFor="let row of selectedSudoku.data; let r = index;">
                     <td *ngFor="let square of row;" class="sudoku-cell">
                         {{square}}
                     </td>
                 </tr>
             </table>
-        </div>
-            <table class="sudoku-grid">
-                <div class="sudoku-cell" *ngFor="let tile of selectedSudoku.data; let i = index;">
-                    {{tile}}
-                </div>
-            </table>
-            
         </div>
     </div>
     
-    <div class="col-md-1">
+    <div class="col-md-12 text-center">
         <button class="lui-button" (click)="solveSudoku(selectedSudoku)">SOLVE</button>
-    </div>
-    <div class="col-md-5">
-        <div *ngIf="solution" class="sudoku-grid">
-            <table class="sudoku-table">
-                <tr *ngFor="let row of solution; let r = index;">
-                    <td *ngFor="let square of row;" class="sudoku-cell">
-                        {{square}}
-                    </td>
-                </tr>
-            </table>
-        </div>
     </div>
