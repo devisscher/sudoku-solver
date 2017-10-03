@@ -1,3 +1,7 @@
-<h1>{{title}}</h1>
-<sudoku-component></sudoku-component>
+<navigation-component></navigation-component>
+<div class="container">
+    <!-- create a select component -->
+    <selector-component [selectedSudoku]="selectedSudoku" (change)="onSelectSudoku($event.target.value)"></selector-component>
+    <sudoku-component [solveSudokuButton]="solveSudokuButton" (click)="onClickSolve($event)"></sudoku-component>
+</div>
 

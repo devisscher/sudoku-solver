@@ -1,46 +1,42 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SudokuService } from './sudoku.service';
-import { Sudoku } from './sudoku';
-import { Solution } from './solution';
+import { Sudoku } from '../models/sudoku';
+import { Parsed } from '../models/parsed';
+import { Solution } from '../models/solution';
+import { puzzles } from '../data/mock-sudoku';
 
 @Component({
-    selector: 'sudoku-component',
-    styleUrls: ['./sudoku.component.css'],
-    templateUrl: './sudoku.component.html',
-    providers: [SudokuService]
+  selector: 'sudoku-component',
+  styleUrls: ['./sudoku.component.scss'],
+  templateUrl: './sudoku.component.html',
+  providers: [SudokuService]
 })
-
 export class SudokuComponent implements OnInit {
-    title = 'Sudoku Solver';
-    sudokus: Sudoku[];
-    solution: Solution[];
-    selectedSudoku: Sudoku;
-    constructor(
-        private sudokuService: SudokuService
-    ) { }
+  @Input() solveSudokuButton: Sudoku;
+  @Output() solve = new EventEmitter();
 
-    getSudokus(): void {
-        this.sudokuService.getSudokus().then(sudokus => this.sudokus = sudokus);
-      };
+  title = 'Sudoku Solver';
+  selectedSudoku: Sudoku;
+  solution: Solution;
 
-    onSelect(sudoku: Sudoku): void {
-        console.log(sudoku);
-        const sudoku_data = sudoku.data;
-        // sudoku_data.forEach(function(element){
-        //     console.log(element);
-        // });
-        this.selectedSudoku = sudoku;
-    };
-    solveSudoku(sudoku: Sudoku): void {
-        console.log('Solving Sudoku');
-        console.log(this.sudokuService.solveSudoku(sudoku.data));
-    };
-    ngOnInit(): void {
-        this.getSudokus();
-    };
-    trackByFn(index, tile) {
-        return tile.id;
-    }
+  constructor(private sudokuService: SudokuService) {}
 
+
+  // get sudoku based on selected value
+
+
+  onClickSolve() {
+    console.log(this.selectedSudoku);
+    this.solve.emit();
+  }
+  solveSudoku(): Solution {
+    this.solution = this.sudokuService.solveSudoku(puzzles[0].data);
+    return this.solution;
+  }
+  ngOnInit(): void {
+    const original: Sudoku = puzzles[0];
+    this.selectedSudoku = original;
+    // get the last puzzle in the array of puzzles to allow extra puzzles to be added
+    this.solution = puzzles.slice(-1)[0];
+  }
 }
-
