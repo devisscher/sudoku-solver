@@ -1,31 +1,42 @@
-import { Component, OnInit } from "@angular/core";
-import { SudokuService } from "./sudoku.service";
-import { Sudoku } from "./sudoku";
-import { Parsed } from "./parsed";
-import { Solution } from "./solution";
-import { SUDOKUS } from "./mock-sudoku";
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { SudokuService } from './sudoku.service';
+import { Sudoku } from '../models/sudoku';
+import { Parsed } from '../models/parsed';
+import { Solution } from '../models/solution';
+import { puzzles } from '../data/mock-sudoku';
 
 @Component({
-  selector: "sudoku-component",
-  styleUrls: ["./sudoku.component.css"],
-  templateUrl: "./sudoku.component.html",
+  selector: 'sudoku-component',
+  styleUrls: ['./sudoku.component.scss'],
+  templateUrl: './sudoku.component.html',
   providers: [SudokuService]
 })
 export class SudokuComponent implements OnInit {
-  title = "Sudoku Solver";
-  parsed: Parsed[];
-  solution: Solution;
+  @Input() solveSudokuButton: Sudoku;
+  @Output() solve = new EventEmitter();
+
+  title = 'Sudoku Solver';
   selectedSudoku: Sudoku;
+  solution: Solution;
 
   constructor(private sudokuService: SudokuService) {}
 
-  solveSudoku(sudoku: Sudoku): void {
-    console.log(sudoku);
-    const solution = this.sudokuService.solveSudoku(sudoku.data);
-    this.selectedSudoku = sudoku;
-    this.solution = solution;
+
+  // get sudoku based on selected value
+
+
+  onClickSolve() {
+    console.log(this.selectedSudoku);
+    this.solve.emit();
+  }
+  solveSudoku(): Solution {
+    this.solution = this.sudokuService.solveSudoku(puzzles[0].data);
+    return this.solution;
   }
   ngOnInit(): void {
-    this.selectedSudoku = SUDOKUS[0];
+    const original: Sudoku = puzzles[0];
+    this.selectedSudoku = original;
+    // get the last puzzle in the array of puzzles to allow extra puzzles to be added
+    this.solution = puzzles.slice(-1)[0];
   }
 }

@@ -1,0 +1,12 @@
+
+<div class="col-md-12">
+  <div class="form-group">
+    <label for="select-puzzle">
+      Select a puzzle: 
+    </label>
+    <select class="form-control" id="select-puzzle">
+      <option selected value={{selectedSudoku.id}} ></option>
+      <option *ngFor="let sudoku of puzzles; let i = index;" value={{i}}>{{sudoku.name}}</option>
+    </select>
+  </div>
+</div>
