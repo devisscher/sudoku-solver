@@ -1,5 +1,3 @@
-export class Puzzle {}
-
 /**
  * Defines the type Sudoku.
  */
@@ -12,6 +10,8 @@ export class Sudoku {
      * name of puzzle
      */
   name: string;
-
+  /**
+     * puzzle
+     */
   data: Array<any>;
 }

@@ -4,8 +4,7 @@
     <label for="select-puzzle">
       Select a puzzle: 
     </label>
-    <select class="form-control" id="select-puzzle">
-      <option selected value={{selectedSudoku.id}} ></option>
+    <select class="lui-select" id="select-puzzle">
       <option *ngFor="let sudoku of puzzles; let i = index;" value={{i}}>{{sudoku.name}}</option>
     </select>
   </div>
