@@ -1,37 +1,46 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, HttpModule } from '@angular/http';
-import 'rxjs/add/operator/toPromise';
 
 import { Sudoku } from '../models/sudoku';
 import { Solution } from '../models/solution';
 import { puzzles } from '../data/mock-sudoku';
 
+/**
+ * The Sudoku Service
+ */
 @Injectable()
 export class SudokuService {
+  /**
+   * Get single sudoku
+   * @param value the index of the puzzles array
+   */
+public getSudoku(value: number): Sudoku {
+    return puzzles[value];
+  }
   /**
      * Solve sudoku
      * First split the board into 9 arrays, representing each row.
      * Second get empty values to propose possible values in the solvePuzzle function.
      *
-     * @param sudoku the entire board as a 1 dimensional array.
+     * @param value the index of the puzzle from the puzzles array.
      */
-  solveSudoku = (sudoku: Array<number>): Solution => {
+public solveSudoku = (value: number): Solution => {
+    const sudoku = puzzles[value].data;
     const empties = this.getEmpties(sudoku);
-    console.log(`Sudoku row length is: ${sudoku.length}`);
+    // console.log(`Sudoku row length is: ${sudoku.length}`);
     // Check that sudoku is an array of 9 rows.
     if (sudoku.length === 9) {
       return this.solvePuzzle(sudoku, empties);
     } else {
       console.log('error');
-      return this.solvePuzzle(sudoku, empties);
+      // return this.solvePuzzle(sudoku, empties);
     }
   }
   /**
      * Receives the board and the empty values.
-     * @param board
-     * @param empties
+     * @param board an array of rows
+     * @param empties an array of row and col coordinates
      */
-  solvePuzzle = (board, empties: Array<Array<number>>): Solution => {
+private solvePuzzle = (board, empties: Array<Array<number>>): Solution => {
     console.time('Solved in');
     // console.log(board);
     let limit = 9,
@@ -52,8 +61,9 @@ export class SudokuService {
       // console.log(`row and col = row: ${row} col: ${col}`);
       // console.log(value);
 
-      found = false;
 
+      found = false;
+      // When the value is not found and the value is below the limit of 9
       while (!found && value <= limit) {
         if (this.checkValue(board, col, row, value)) {
           found = true;
@@ -63,6 +73,7 @@ export class SudokuService {
           value++;
         }
       }
+      // When the value is not found, backtrack
       if (!found) {
         board[row][col] = 0;
         i--;
@@ -72,13 +83,15 @@ export class SudokuService {
     //     console.log(line.join());
     // });
     console.timeEnd('Solved in');
+
+    // return the solved board
     return board;
   }
   /**
      * Responsible for getting empty values inside the board.
-     * @param {array} sudoku
+     * @param board
      */
-  getEmpties = board => {
+private getEmpties = (board: Array<Array<number>>): Array<Array<number>> => {
     const empties = [];
     for (let i = 0; i < board.length; i++) {
       for (let j = 0; j < board[i].length; j++) {
@@ -92,29 +105,40 @@ export class SudokuService {
   }
   /**
      * Responsible checking the candidate within its row.
-     * @param {array} sudoku the board
-     * @param {number} row the row in which the value is
-     * @param {value} value candidate
+     * @param board the board
+     * @param row the row in which the value is
+     * @param value candidate
      */
-  checkRow = (sudoku, row, value) => {
-    for (let i = 0; i < sudoku.length; i++) {
-      if (sudoku[row][i] === value) {
+    private checkRow = (board: Array<Array<number>>, row: number, value: number): boolean => {
+    for (let i = 0; i < board.length; i++) {
+      if (board[row][i] === value) {
         return false;
       }
     }
     return true;
   }
-
-  checkCol = (sudoku, col, value) => {
-    for (let i = 0; i < sudoku.length; i++) {
-      if (sudoku[i][col] === value) {
+  /**
+     * Responsible checking the candidate within its column.
+     * @param board the board
+     * @param col the column in which the value is
+     * @param value candidate
+     */
+private checkCol = (board: Array<Array<number>>, col: number, value: number): boolean => {
+    for (let i = 0; i < board.length; i++) {
+      if (board[i][col] === value) {
         return false;
       }
     }
     return true;
   }
-
-  checkSquare = (sudoku, col, row, value) => {
+  /**
+     * Responsible checking the candidate within its square 3x3.
+     * @param board the board
+     * @param col the column in which the value is
+     * @param row the row in which the value is
+     * @param value candidate
+     */
+private checkSquare = (board: Array<Array<number>>, col: number, row: number, value: number): boolean => {
     let colCorner = 0,
       rowCorner = 0,
       squareSize = 3;
@@ -126,15 +150,21 @@ export class SudokuService {
     }
     for (let i = rowCorner; i < rowCorner + squareSize; i++) {
       for (let j = colCorner; j < colCorner + squareSize; j++) {
-        if (sudoku[i][j] === value) {
+        if (board[i][j] === value) {
           return false;
         }
       }
     }
     return true;
   }
-
-  checkValue = (board, col, row, value) => {
+  /**
+     * Responsible checking the candidate, it calls the other 3 functions, checkRow, checkCol and checkSquare.
+     * @param board the board
+     * @param col the column in which the value is
+     * @param row the row in which the value is
+     * @param value candidate
+     */
+private checkValue = (board: Array<Array<number>>, col: number, row: number, value: number): boolean => {
     if (
       this.checkRow(board, row, value) &&
       this.checkCol(board, col, value) &&

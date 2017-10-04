@@ -1,28 +1,14 @@
 # Sudoku Solver
 
-## Run the project 
+## Run the project
 
-`yarn`
+### Install modules
 
-and 
+`npm install`
 
-`yarn start`
+### and run the app
 
-
-### README To be incomplete.
-
-## Resources
-
-- http://norvig.com/sudoku.html
-- https://www.youtube.com/watch?v=NuodN41aK3g
-- https://www.codefellows.org/blog/sudoku-solver-from-scratch-in-javascript-tdd-style-a-tutorial/
-
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
+`npm start`
 
 ## Build
 
@@ -30,7 +16,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
 ## Running end-to-end tests
 
@@ -41,6 +27,8 @@ Before running the tests make sure you are serving the app via `ng serve`.
 
 Run `ng github-pages:deploy` to deploy to GitHub Pages.
 
-## Further help
+## Resources consulted
 
-To get more help on the `angular-cli` use `ng help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- http://norvig.com/sudoku.html
+- https://angular.io/docs
+- https://www.codefellows.org/blog/sudoku-solver-from-scratch-in-javascript-tdd-style-a-tutorial/

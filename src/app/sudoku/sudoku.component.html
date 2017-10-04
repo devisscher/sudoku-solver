@@ -1,25 +1,34 @@
 
-<div class="wrapper">
+<div class="wrapper vertical-align" style="overflow: hidden; width:100%;">
     <div class="col-md-5">
-        <div *ngIf="selectedSudoku">
+        <div *ngIf="sudoku">
             <div class="sudoku-grid">
-                <div *ngFor="let row of selectedSudoku.data; let r = index;" class="sudoku-row">
+                <div *ngFor="let row of sudoku.data; let r = index;" class="sudoku-row">
                     <div *ngFor="let square of row;" class="sudoku-cell">
-                        {{square === 0 ? ' ' : square}}
+                        <span>{{square === 0 ? ' ' : square}}</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-md-2 text-center">
-        <button class="lui-button" (click)="solveSudoku()">SOLVE</button>  
+        <button class="lui-button" (click)="solve()">SOLVE</button>  
     </div>
     <div class="col-md-5">
-        <div *ngIf="solution">
+        <div *ngIf="emptySolution">
             <div class="sudoku-grid">
-                <div *ngFor="let row of solution.data; let r = index;" class="sudoku-row" >
+                <div *ngFor="let row of emptySolution.data; let r = index;" class="sudoku-row" >
                     <div *ngFor="let square of row;" class="sudoku-cell" [class.empty]="isEmpty">
-                            {{square === 0 ? ' ' : square}}
+                            <div>{{square === 0 ? '.' : square}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div *ngIf="solution">
+            <div class="sudoku-grid">
+                <div *ngFor="let row of solution; let r = index;" class="sudoku-row" >
+                    <div *ngFor="let square of row;" class="sudoku-cell">
+                            <span>{{square === 0 ? ' ' : square}}</span>
                     </div>
                 </div>
             </div>

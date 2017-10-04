@@ -16,6 +16,8 @@ export class Solution {
      * name of puzzle
      */
   name: string;
-
+  /**
+     * puzzle
+     */
   data: Array<any>;
 }

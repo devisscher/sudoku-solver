@@ -2,15 +2,20 @@
 
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { NavigationComponent } from './navigation/navigation.component';
 import { SudokuComponent } from './sudoku/sudoku.component';
+import { SelectorComponent } from './selector/selector.component';
+import { SudokuService } from './sudoku/sudoku.service';
 
 describe('AppComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AppComponent, SudokuComponent]
+      declarations: [AppComponent, SudokuComponent, NavigationComponent, SelectorComponent],
+      providers: [SudokuService]
     });
     TestBed.compileComponents();
   });
+
   it(
     'should create the app',
     async(() => {
@@ -25,17 +30,7 @@ describe('AppComponent', () => {
     async(() => {
       const fixture = TestBed.createComponent(AppComponent);
       const app = fixture.debugElement.componentInstance;
-      expect(app.title).toEqual('Sudoku App');
-    })
-  );
-
-  it(
-    'should render title in a h1 tag',
-    async(() => {
-      const fixture = TestBed.createComponent(AppComponent);
-      fixture.detectChanges();
-      const compiled = fixture.debugElement.nativeElement;
-      expect(compiled.querySelector('a').textContent).toContain('Sudoku App');
+      expect(app.selectedSudoku).toEqual(0);
     })
   );
 });

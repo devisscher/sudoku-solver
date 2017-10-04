@@ -1,7 +1,8 @@
 <navigation-component></navigation-component>
 <div class="container">
-    <!-- create a select component -->
-    <selector-component [selectedSudoku]="selectedSudoku" (change)="onSelectSudoku($event.target.value)"></selector-component>
-    <sudoku-component [solveSudokuButton]="solveSudokuButton" (click)="onClickSolve($event)"></sudoku-component>
+    <!-- select component -->
+    <selector-component (change)="onSelect($event.target.value);"></selector-component>
+    <!-- sudoku component -->
+    <sudoku-component [selectedSudoku]="selectedSudoku"></sudoku-component>
 </div>
 
