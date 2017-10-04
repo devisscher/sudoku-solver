@@ -48,6 +48,7 @@ beforeEach(() => {
   it('Should get sudoku', () => {
     expect(service.getSudoku(0)).toEqual(sudokuServiceStub.sudoku);
   });
+  // take a puzzle instead
   it('Should solve sudoku', () => {
     expect(service.solveSudoku(0)).toEqual(sudokuServiceSolutionStub.sudoku.data);
   });

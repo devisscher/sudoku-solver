@@ -23,13 +23,13 @@ public getSudoku(value: number): Sudoku {
      *
      * @param value the index of the puzzle from the puzzles array.
      */
-public solveSudoku = (value: number): Solution => {
-    const sudoku = puzzles[value].data;
-    const empties = this.getEmpties(sudoku);
+public solveSudoku = (sudoku: Sudoku): Solution => {
+    const { data } = sudoku;
+    const empties = this.getEmpties(data);
     // console.log(`Sudoku row length is: ${sudoku.length}`);
     // Check that sudoku is an array of 9 rows.
-    if (sudoku.length === 9) {
-      return this.solvePuzzle(sudoku, empties);
+    if (data.length === 9) {
+      return this.solvePuzzle(data, empties);
     } else {
       console.log('error');
       // return this.solvePuzzle(sudoku, empties);

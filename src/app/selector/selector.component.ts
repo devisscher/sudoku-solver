@@ -14,7 +14,8 @@ export class SelectorComponent implements OnInit {
   /**
    * selectedSudoku input property.
    */
-  @Input() selectedSudoku: Sudoku;
+  // @Input() selectedSudoku: Sudoku;
+  @Input() puzzleSelected: any;
   /**
    * puzzles property, provides options to the dropdown list.
    */
@@ -23,6 +24,10 @@ export class SelectorComponent implements OnInit {
    * constructor if dependencies.
    */
   constructor() {}
+
+  onChange(event) {
+    this.puzzleSelected(puzzles[event.target.value]);
+  }
   /**
    * set puzzles in dropdown list.
    */

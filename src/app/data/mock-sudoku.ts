@@ -1,6 +1,8 @@
 /**
- * Add an object to the puzzles array to try differe
+ * Add an object to the puzzles array to try different puzzles
  */
+
+ // Make as a service
 
 import { Sudoku } from '../models/sudoku';
 

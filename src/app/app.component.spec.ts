@@ -33,4 +33,12 @@ describe('AppComponent', () => {
       expect(app.selectedSudoku).toEqual(0);
     })
   );
+  it(
+    `should render the selector'`,
+    async(() => {
+      const fixture = TestBed.createComponent(AppComponent);
+      const app = fixture.debugElement.componentInstance;
+      expect(app.selectedSudoku).toEqual(0);
+    })
+  );
 });

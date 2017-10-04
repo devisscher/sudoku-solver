@@ -1,8 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Sudoku } from './models/sudoku';
 
 import { NavigationComponent } from './navigation/navigation.component';
-import { SudokuComponent } from './sudoku/sudoku.component';
+// import { SudokuComponent } from './sudoku/sudoku.component';
 import { SelectorComponent } from './selector/selector.component';
 
 import { SudokuService } from './sudoku/sudoku.service';
@@ -14,18 +14,18 @@ import { SudokuService } from './sudoku/sudoku.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [SudokuComponent]
+  providers: []
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
   /**
    * Outputs the selected puzzle.
    */
-  @Output() select: EventEmitter<number>= new EventEmitter();
+  selectedSudoku: Sudoku;
+  solution: Sudoku;
   /**
    * Set selected initial selected sudoku.
    */
-  selectedSudoku = 0;
 
   /**
    * Sudoku Service as a dependency
@@ -34,17 +34,14 @@ export class AppComponent implements OnInit {
   constructor(private sudokuService: SudokuService) {}
   /**
    * Select puzzle to be solved
-   * @param value
+   * @param sudoku
    */
-  onSelect(value: number) {
-    console.log('CLICKED ' + value);
-    this.selectedSudoku = value;
-    this.select.emit(value);
+  onSelect = (sudoku: Sudoku) => {
+    this.solution = null;
+    this.selectedSudoku = sudoku;
   }
-  /**
-   * Initialize view and emit selectedSudoku to Sudoku component.
-   */
-  ngOnInit() {
-    this.select.emit(this.selectedSudoku);
+  solve = (): void => {
+    this.solution = JSON.parse(JSON.stringify(this.selectedSudoku));
+    this.sudokuService.solveSudoku(this.solution);
   }
 }

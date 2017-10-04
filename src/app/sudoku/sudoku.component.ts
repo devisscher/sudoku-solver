@@ -58,12 +58,12 @@ export class SudokuComponent implements OnInit, OnChanges {
   /**
    * When solve button is pressed, takes the input property and solves the puzzle.
    */
-  solve(): void {
-    this.isEmpty = false; // remove the empty class from grid
-    this.emptySolution = null; // Set emptySolution to null
-    this.sudoku = this.sudokuService.getSudoku(this.selectedSudoku); // Set original puzzle
-    this.solution = this.sudokuService.solveSudoku(this.selectedSudoku); // Set solution to solveSudoku in SudokuService
-  }
+  // solve(): void {
+  //   this.isEmpty = false; // remove the empty class from grid
+  //   this.emptySolution = null; // Set emptySolution to null
+  //   // this.sudoku = this.sudokuService.getSudoku(this.selectedSudoku); // Set original puzzle
+  //   this.solution = this.sudokuService.solveSudoku(this.selectedSudoku); // Set solution to solveSudoku in SudokuService
+  // }
   /**
    * Receives changes from the select puzzle dropdown.
    */
