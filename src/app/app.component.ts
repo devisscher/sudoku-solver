@@ -6,6 +6,9 @@ import { SelectorComponent } from './selector/selector.component';
 
 import { SolverService } from './services/solver.service';
 
+/**
+ * Provide an empty solution to the app to display grid.
+ */
 const emptySolution: Sudoku = {
   id: 3,
   name: 'Empty grid',
@@ -34,14 +37,13 @@ const emptySolution: Sudoku = {
 export class AppComponent {
 
   /**
-   * Outputs the selected puzzle.
+   * The selected puzzle.
    */
   selectedSudoku: Sudoku;
-  solution: Sudoku = emptySolution;
   /**
-   * Set selected initial selected sudoku.
+   * The solution is initially set to empty.
    */
-
+  solution: Sudoku = emptySolution;
   /**
    * Solver Service as a dependency
    * @param solverService
@@ -55,6 +57,9 @@ export class AppComponent {
     this.solution = emptySolution;
     this.selectedSudoku = sudoku;
   }
+  /**
+   * Call the solverService solveSudoku method.
+   */
   solve = (): void => {
     this.solution = JSON.parse(JSON.stringify(this.selectedSudoku));
     this.solverService.solveSudoku(this.solution);
