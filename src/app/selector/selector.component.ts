@@ -26,7 +26,7 @@ export class SelectorComponent implements OnInit {
   constructor() {}
   /**
    * On select from dropdown list, puzzle is bound to the grid.
-   * @param event
+   * @param event the event sent from the dropdown
    */
   onChange(event) {
     this.puzzleSelected(puzzles[event.target.value]);
