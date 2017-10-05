@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Sudoku } from '../models/sudoku';
 import { Solution } from '../models/solution';
-import { puzzles } from '../data/mock-sudoku';
 
 /**
  * The Sudoku Service
@@ -19,14 +18,33 @@ public solveSudoku = (sudoku: Sudoku): Solution => {
     const { data } = sudoku;
     const empties = this.getEmpties(data);
     // console.log(`Sudoku row length is: ${sudoku.length}`);
+
+
     // Check that sudoku is an array of 9 rows.
     if (data.length === 9) {
-      return this.solvePuzzle(data, empties);
+      // Check that sudoku contains only numbers 1 to 9 and zeros for empties.
+      if (this.checkForIllegalValues(data) === true) {
+        return this.solvePuzzle(data, empties);
+      }
     } else {
-      console.log('error');
-      // return this.solvePuzzle(sudoku, empties);
+      console.log('Error, sudoku is invalid.');
+      return sudoku;
     }
   }
+
+private checkForIllegalValues(data) {
+  for (let row = 0; row < data.length; row++) {
+    for (let col = 0; col < data[row].length; col++) {
+     if (data[row][col] > 9 || data[row][col] < 0) {
+      console.log('Error, puzzle contains illegal values');
+      return false;
+      }
+    }
+  }
+  console.log('Found no illegal values.');
+  return true;
+}
+
 /**
    * Receives the board and the empty values.
    * @param board an array of rows
@@ -34,13 +52,12 @@ public solveSudoku = (sudoku: Sudoku): Solution => {
    */
 private solvePuzzle = (board, empties: Array<Array<number>>): Solution => {
     console.time('Solved in');
-    // console.log(board);
-    let limit = 9,
-      i,
-      row,
-      col,
-      value,
-      found;
+    const limit = 9;
+    let i;
+    let row;
+    let col;
+    let value;
+    let found;
 
     for (i = 0; i < empties.length; ) {
       // empties i = the empty value array found
@@ -69,11 +86,7 @@ private solvePuzzle = (board, empties: Array<Array<number>>): Solution => {
         i--;
       }
     }
-    // board.forEach((line) => {
-    //     console.log(line.join());
-    // });
     console.timeEnd('Solved in');
-
     // return the solved board
     return board;
   }
@@ -130,8 +143,8 @@ private checkCol = (board: Array<Array<number>>, col: number, value: number): bo
      */
 private checkSquare = (board: Array<Array<number>>, col: number, row: number, value: number): boolean => {
     let colCorner = 0,
-      rowCorner = 0,
-      squareSize = 3;
+      rowCorner = 0;
+      const squareSize = 3;
     while (col >= colCorner + squareSize) {
       colCorner += squareSize;
     }

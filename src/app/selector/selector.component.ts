@@ -14,7 +14,6 @@ export class SelectorComponent implements OnInit {
   /**
    * selectedSudoku input property.
    */
-  // @Input() selectedSudoku: Sudoku;
   @Input() puzzleSelected: any;
   /**
    * puzzles property, provides options to the dropdown list.
