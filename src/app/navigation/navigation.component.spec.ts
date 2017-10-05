@@ -23,9 +23,7 @@ describe('NavigationComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it(
-    `should have as title 'Sudoku App'`,
-    async(() => {
+  it(`should have as title 'Sudoku App'`, async(() => {
       expect(component.title).toEqual('Sudoku App');
     })
   );

@@ -1,6 +1,10 @@
 # Sudoku Solver
 
-Welcome to Sudoku Solver. This app was built to demonstrate the use of a backtracking algorithm in JavaScript. It was built using Angular(4.4.4). To add or change the puzzles loaded, edit `src/app/data/mock-sudoku.ts` file. The app takes an array of sudoku objects like the following.
+Welcome to Sudoku Solver. This app was built to demonstrate the use of a backtracking algorithm in JavaScript. The algorithm checks empty values, eliminating candidates until it has found a correct value. If the app finds a conflict, it backtracks, modifies the candidate and continues until it has solved the sudoku.
+
+The app was built using Angular(4.4.4).
+
+To add or change the puzzles loaded, edit `src/app/data/mock-sudoku.ts` file. The app takes an array of sudoku objects like the following.
 
 ```
 // src/app/data/mock-sudoku.ts

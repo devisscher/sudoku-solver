@@ -55,13 +55,25 @@ export class AppComponent {
    */
   onSelect = (sudoku: Sudoku) => {
     this.solution = emptySolution;
-    this.selectedSudoku = sudoku;
+    if (sudoku.data.length === 9) {
+      this.selectedSudoku = sudoku;
+    } else {
+      console.log('Error, invalid sudoku.');
+      this.selectedSudoku = emptySolution;
+    }
+
   }
   /**
    * Call the solverService solveSudoku method.
    */
   solve = (): void => {
-    this.solution = JSON.parse(JSON.stringify(this.selectedSudoku));
-    this.solverService.solveSudoku(this.solution);
+    if (this.selectedSudoku !== emptySolution) {
+      this.solution = JSON.parse(JSON.stringify(this.selectedSudoku));
+      this.solverService.solveSudoku(this.solution);
+    } else {
+      console.log('Error, invalid sudoku.');
+      this.solution = emptySolution;
+    }
+
   }
 }
