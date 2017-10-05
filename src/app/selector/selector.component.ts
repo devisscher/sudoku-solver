@@ -14,7 +14,8 @@ export class SelectorComponent implements OnInit {
   /**
    * selectedSudoku input property.
    */
-  @Input() selectedSudoku: Sudoku;
+  // @Input() selectedSudoku: Sudoku;
+  @Input() puzzleSelected: any;
   /**
    * puzzles property, provides options to the dropdown list.
    */
@@ -24,9 +25,17 @@ export class SelectorComponent implements OnInit {
    */
   constructor() {}
   /**
-   * set puzzles in dropdown list.
+   * On select from dropdown list, puzzle is bound to the grid.
+   * @param event
+   */
+  onChange(event) {
+    this.puzzleSelected(puzzles[event.target.value]);
+  }
+  /**
+   * set puzzles in dropdown list. Default to first puzzle.
    */
   ngOnInit() {
+    this.puzzleSelected(puzzles[0]);
     this.puzzles = puzzles;
   }
 }

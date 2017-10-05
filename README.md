@@ -1,5 +1,9 @@
 # Sudoku Solver
 
+Welcome to Sudoku Solver. This app was built to demonstrate the use of a backtracking algorithm in JavaScript. It is built using Angular.
+
+The app can be found here: https://devisscher.github.io/sudoku-solver/
+
 ## Run the project
 
 ### Install modules
@@ -12,20 +16,19 @@
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
 ## Running unit tests
 
 Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
 ## Deploying to GitHub Pages
 
-Run `ng github-pages:deploy` to deploy to GitHub Pages.
+Run `npm run publish` to deploy to GitHub Pages.
+
+## Generating documentation
+
+Run `npm run compodoc`.
 
 ## Resources consulted
 

@@ -1,0 +1,9 @@
+<div class="col-md-5">
+  <div class="sudoku-grid">
+      <div *ngFor="let row of selectedSudoku.data; let r = index;" class="sudoku-row" >
+          <div *ngFor="let square of row;" class="sudoku-cell">
+                <span class="{{square === 0 ? 'empty' : ''}}">{{square === 0 ? '.' : square}}</span>
+          </div>
+      </div>
+  </div>
+</div>

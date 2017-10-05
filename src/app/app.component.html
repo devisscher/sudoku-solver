@@ -1,8 +1,12 @@
 <navigation-component></navigation-component>
 <div class="container">
-    <!-- select component -->
-    <selector-component (change)="onSelect($event.target.value);"></selector-component>
-    <!-- sudoku component -->
-    <sudoku-component [selectedSudoku]="selectedSudoku"></sudoku-component>
+    <selector-component [puzzleSelected]="onSelect"></selector-component>
+    <div class="wrapper vertical-align" style="overflow: hidden; width:100%;">
+        <grid-component *ngIf="selectedSudoku" [selectedSudoku]="selectedSudoku"></grid-component>
+        <div class="col-md-2 text-center">
+            <button class="lui-button" (click)="solve()">SOLVE</button>  
+        </div>
+        <grid-component *ngIf="solution" [selectedSudoku]="solution"></grid-component>
+    </div>
 </div>
 

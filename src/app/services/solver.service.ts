@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import { Sudoku } from '../models/sudoku';
 import { Solution } from '../models/solution';
 import { puzzles } from '../data/mock-sudoku';
@@ -8,38 +7,31 @@ import { puzzles } from '../data/mock-sudoku';
  * The Sudoku Service
  */
 @Injectable()
-export class SudokuService {
-  /**
-   * Get single sudoku
-   * @param value the index of the puzzles array
+export class SolverService {
+/**
+   * Solve sudoku
+   * First split the board into 9 arrays, representing each row.
+   * Second get empty values to propose possible values in the solvePuzzle function.
+   *
+   * @param value the index of the puzzle from the puzzles array.
    */
-public getSudoku(value: number): Sudoku {
-    return puzzles[value];
-  }
-  /**
-     * Solve sudoku
-     * First split the board into 9 arrays, representing each row.
-     * Second get empty values to propose possible values in the solvePuzzle function.
-     *
-     * @param value the index of the puzzle from the puzzles array.
-     */
-public solveSudoku = (value: number): Solution => {
-    const sudoku = puzzles[value].data;
-    const empties = this.getEmpties(sudoku);
+public solveSudoku = (sudoku: Sudoku): Solution => {
+    const { data } = sudoku;
+    const empties = this.getEmpties(data);
     // console.log(`Sudoku row length is: ${sudoku.length}`);
     // Check that sudoku is an array of 9 rows.
-    if (sudoku.length === 9) {
-      return this.solvePuzzle(sudoku, empties);
+    if (data.length === 9) {
+      return this.solvePuzzle(data, empties);
     } else {
       console.log('error');
       // return this.solvePuzzle(sudoku, empties);
     }
   }
-  /**
-     * Receives the board and the empty values.
-     * @param board an array of rows
-     * @param empties an array of row and col coordinates
-     */
+/**
+   * Receives the board and the empty values.
+   * @param board an array of rows
+   * @param empties an array of row and col coordinates
+   */
 private solvePuzzle = (board, empties: Array<Array<number>>): Solution => {
     console.time('Solved in');
     // console.log(board);
@@ -60,8 +52,6 @@ private solvePuzzle = (board, empties: Array<Array<number>>): Solution => {
       // To see backtracking (Slows down the app considerably)
       // console.log(`row and col = row: ${row} col: ${col}`);
       // console.log(value);
-
-
       found = false;
       // When the value is not found and the value is below the limit of 9
       while (!found && value <= limit) {
@@ -87,10 +77,10 @@ private solvePuzzle = (board, empties: Array<Array<number>>): Solution => {
     // return the solved board
     return board;
   }
-  /**
-     * Responsible for getting empty values inside the board.
-     * @param board
-     */
+/**
+   * Responsible for getting empty values inside the board.
+   * @param board
+   */
 private getEmpties = (board: Array<Array<number>>): Array<Array<number>> => {
     const empties = [];
     for (let i = 0; i < board.length; i++) {
@@ -117,12 +107,12 @@ private getEmpties = (board: Array<Array<number>>): Array<Array<number>> => {
     }
     return true;
   }
-  /**
-     * Responsible checking the candidate within its column.
-     * @param board the board
-     * @param col the column in which the value is
-     * @param value candidate
-     */
+/**
+   * Responsible checking the candidate within its column.
+   * @param board the board
+   * @param col the column in which the value is
+   * @param value candidate
+   */
 private checkCol = (board: Array<Array<number>>, col: number, value: number): boolean => {
     for (let i = 0; i < board.length; i++) {
       if (board[i][col] === value) {
