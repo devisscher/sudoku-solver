@@ -62,37 +62,6 @@
     border: 1px solid black;
 }
 
-
-/* Align items vertically when not on a smaller screen */
-
-@media (min-width: 990px) {
-    .vertical-align {
-        display: flex;
-        align-items: center;
-    }
-}
-
-@mixin aspect-ratio($width, $height) {
-    position: relative;
-    &:before {
-        display: block;
-        content: '';
-        width: 100%;
-        padding-top: ($height / $width) * 100%;
-    }
-    >.content {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-    }
-}
-
-.square {
-    @include aspect-ratio(1, 1);
-}
-
 .empty {
     /* Add padding of half the height to ensure cells are square */
     color: #fff;

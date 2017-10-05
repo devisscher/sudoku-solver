@@ -24,14 +24,18 @@ export class SelectorComponent implements OnInit {
    * constructor if dependencies.
    */
   constructor() {}
-
+  /**
+   * On select from dropdown list, puzzle is bound to the grid.
+   * @param event
+   */
   onChange(event) {
     this.puzzleSelected(puzzles[event.target.value]);
   }
   /**
-   * set puzzles in dropdown list.
+   * set puzzles in dropdown list. Default to first puzzle.
    */
   ngOnInit() {
+    this.puzzleSelected(puzzles[0]);
     this.puzzles = puzzles;
   }
 }

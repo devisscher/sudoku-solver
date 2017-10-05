@@ -1,12 +1,9 @@
 
-import { SudokuService } from './sudoku.service';
+import { SolverService } from './solver.service';
 import { Sudoku } from '../models/sudoku';
 
-import { puzzles } from '../data/mock-sudoku';
-
-
 describe('Test service: SudokuService', () => {
-    const sudokuServiceStub = {
+    const solverServiceStub = {
         sudoku: {
           id: 1,
           name: 'Qlik Sample Puzzle',
@@ -23,7 +20,7 @@ describe('Test service: SudokuService', () => {
           ]
         }
       };
-      const sudokuServiceSolutionStub = {
+      const solverServiceSolutionStub = {
         sudoku: {
           id: 1,
           name: 'Solution',
@@ -42,15 +39,10 @@ describe('Test service: SudokuService', () => {
       };
 let service;
 beforeEach(() => {
-    service = new SudokuService();
+    service = new SolverService();
 });
-
-  it('Should get sudoku', () => {
-    expect(service.getSudoku(0)).toEqual(sudokuServiceStub.sudoku);
-  });
-  // take a puzzle instead
   it('Should solve sudoku', () => {
-    expect(service.solveSudoku(0)).toEqual(sudokuServiceSolutionStub.sudoku.data);
+    expect(service.solveSudoku(solverServiceStub.sudoku)).toEqual(solverServiceSolutionStub.sudoku.data);
   });
 });
 

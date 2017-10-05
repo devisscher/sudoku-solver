@@ -16,6 +16,7 @@ describe('SelectorComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SelectorComponent);
     component = fixture.componentInstance;
+    component.puzzleSelected =  function(){};
     fixture.detectChanges();
   });
 

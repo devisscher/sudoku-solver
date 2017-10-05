@@ -1,11 +1,26 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Sudoku } from './models/sudoku';
 
 import { NavigationComponent } from './navigation/navigation.component';
-// import { SudokuComponent } from './sudoku/sudoku.component';
 import { SelectorComponent } from './selector/selector.component';
 
-import { SudokuService } from './sudoku/sudoku.service';
+import { SolverService } from './services/solver.service';
+
+const emptySolution: Sudoku = {
+  id: 3,
+  name: 'Empty grid',
+  data: [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0]
+  ]
+};
 
 /**
  * The app root
@@ -22,26 +37,26 @@ export class AppComponent {
    * Outputs the selected puzzle.
    */
   selectedSudoku: Sudoku;
-  solution: Sudoku;
+  solution: Sudoku = emptySolution;
   /**
    * Set selected initial selected sudoku.
    */
 
   /**
-   * Sudoku Service as a dependency
-   * @param sudokuService
+   * Solver Service as a dependency
+   * @param solverService
    */
-  constructor(private sudokuService: SudokuService) {}
+  constructor(private solverService: SolverService) {}
   /**
    * Select puzzle to be solved
    * @param sudoku
    */
   onSelect = (sudoku: Sudoku) => {
-    this.solution = null;
+    this.solution = emptySolution;
     this.selectedSudoku = sudoku;
   }
   solve = (): void => {
     this.solution = JSON.parse(JSON.stringify(this.selectedSudoku));
-    this.sudokuService.solveSudoku(this.solution);
+    this.solverService.solveSudoku(this.solution);
   }
 }

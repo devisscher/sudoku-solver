@@ -16,6 +16,7 @@ describe('GridComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(GridComponent);
     component = fixture.componentInstance;
+    component.selectedSudoku = {id: 1, name: 'sample', data: []};
     fixture.detectChanges();
   });
 
